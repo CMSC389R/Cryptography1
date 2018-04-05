@@ -125,7 +125,42 @@ mthomp22: blink
 
 ## Part 2
 
-My code for this part of the assignment can be found [here](). My thought process here was that for each potential password in the list, I iterated through all the lower case characters in the alphabet, appending the the characters to the beginning of the passwords and then hashing this combination. I would then check if this new hash exists in our hash file. If it existed in the hash file I would print out the salt and the password because that comprised the hash because these were apparently the correct salt and password combination. When I run the code I get this output of each salt and password:
+My code for this part of the assignment can be found [here](https://github.com/yreiss1/Cryptography1/blob/master/part2.py). My thought process here was that for each potential password in the list, I iterated through all the lower case characters in the alphabet, appending the the characters to the beginning of the passwords and then hashing this combination. I would then check if this new hash exists in our hash file. If it existed in the hash file I would print out the salt and the password because that comprised the hash because these were apparently the correct salt and password combination. 
+
+```
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+# importing a useful library -- feel free to add any others you find necessary
+import hashlib
+
+wordlist = "password_list.txt"       # download the wordlist and enter the ABSOLUTE path here
+hash_file = open("hashes.txt", "r")
+passwords = open(wordlist, "r")
+
+
+hashes = hash_file.read()
+
+#Creates a list of all lower case english characters
+alphabet = list(map(chr, range(97, 123)))
+
+#Every iteration of a new password, I iterate through the whole list of characters
+for line in passwords:
+	for character in alphabet:
+		salted = character + line.strip()
+		hashed = hashlib.sha512(salted).hexdigest()
+
+
+		#If the newly hashed password is in the hash, then it is the right password.
+		if hashed in hashes:
+			print "Salt_Character: " + character + ", Password: " + line
+```
+
+
+
+
+
+When I run the code I get this output of each salt and password:
 ```
 Salt_Character: c, Password: 888888
 
@@ -140,7 +175,51 @@ Salt_Character: r, Password: motorola
 
 ## Part 3
 
-My code for this part of the assignment can be found [here](). My thought process here was pretty simple, I realized that our friend on the other side would ask more than one question, so while they keep asking questions we'll keep evaluating them. I use python's ```eval()``` function to evaluate the line as a string, hash it using ```hashlib.sha256(answer).hexdigest()``` which converts the answer into a hash, and return it to our friend on the other side. I use a while loop to keep doing this untill there are no more questions. The flag that is passed back after completing the two evaluations is: 
+My code for this part of the assignment can be found [here](https://github.com/yreiss1/Cryptography1/blob/master/part3.py). My thought process here was pretty simple, I realized that our friend on the other side would ask more than one question, so while they keep asking questions we'll keep evaluating them. I use python's ```eval()``` function to evaluate the line as a string, hash it using ```hashlib.sha256(answer).hexdigest()``` which converts the answer into a hash, and return it to our friend on the other side. I use a while loop to keep doing this untill there are no more questions. 
+
+```
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+# importing useful libraries -- feel free to add any others you find necessary
+import socket
+import hashlib
+
+host = "irc.csec.umiacs.umd.edu"   # IP address or URL
+port = 4444     # port
+
+# use these to connect to the service
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((host, port))
+
+# receive some data
+data = s.recv(1024)
+print(data)
+
+split = data.split("\n")
+
+
+answer = eval(split[1])
+
+
+
+
+while (split[1]):
+	hashed = hashlib.sha256(str(answer)).hexdigest()
+
+	s.send(str(hashed) + "\n")
+
+	data = s.recv(1024)
+	print(data)
+	split = data.split("\n")
+	if (split[1]):
+		answer = eval(split[1])
+
+# close the connection
+s.close()
+```
+
+The flag that is passed back after completing the two evaluations is: 
 
 ```You win! CMSC389R-{d0nt_pL@y_w1tH_mY_em0SHAns}```
 
