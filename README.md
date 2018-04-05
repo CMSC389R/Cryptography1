@@ -18,7 +18,7 @@ root: XXv.SXDX
 admin: GOpCaSQH
 bob: vgy72nH3
 joe: eZ5SZG9g
-mnthomp22: SlJR2aEx
+mthomp22: SlJR2aEx
 ```
 
 
@@ -65,7 +65,7 @@ So only the passwords of users bob, joe, and mnthomp22 have changed, and they ch
 ```
 bob: August 30th, 1973
 joe: January 25th, 1971
-mnthomp22: August 11th, 1975
+mthomp22: August 11th, 1975
 ```
 
 #### 4. What are the restrictions each user has on changing their password, if any?
@@ -86,7 +86,7 @@ joe: Must change his password in 120 days
      Gets a warning 14 days before password must be changed
      Account is disabled 3 days after failing to change password
      
-mnthomp22: Has to change password in 99999 days 
+mthomp22: Has to change password in 99999 days 
            Must change his password in 0 days (Oh no!)
            
 ```
@@ -113,7 +113,7 @@ mthomp22:blink:102:1000:mthomp22:/home/mthomp22:/bin/briongsh
 5 password hashes cracked, 0 left
 ```
 
-From this output I obtained the passwords for each userL
+From this output I obtained the passwords for each user:
 
 ```
 root: toor
@@ -122,3 +122,25 @@ bob: saget
 joe: schmo
 mthomp22: blink
 ```
+
+## Part 2
+
+My code for this part of the assignment can be found [here](). My thought process here was that for each potential password in the list, I iterated through all the lower case characters in the alphabet, appending the the characters to the beginning of the passwords and then hashing this combination. I would then check if this new hash exists in our hash file. If it existed in the hash file I would print out the salt and the password because that comprised the hash because these were apparently the correct salt and password combination. When I run the code I get this output of each salt and password:
+```
+Salt_Character: c, Password: 888888
+
+Salt_Character: e, Password: manchester
+
+Salt_Character: b, Password: vfhbyf
+
+Salt_Character: y, Password: jason1
+
+Salt_Character: r, Password: motorola
+```
+
+## Part 3
+
+My code for this part of the assignment can be found [here](). My thought process here was pretty simple, I realized that our friend on the other side would ask more than one question, so while they keep asking questions we'll keep evaluating them. I use python's ```eval()``` function to evaluate the line as a string, hash it using ```hashlib.sha256(answer).hexdigest()``` which converts the answer into a hash, and return it to our friend on the other side. I use a while loop to keep doing this untill there are no more questions. The flag that is passed back after completing the two evaluations is: 
+
+```You win! CMSC389R-{d0nt_pL@y_w1tH_mY_em0SHAns}```
+
