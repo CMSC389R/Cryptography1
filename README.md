@@ -24,9 +24,9 @@ mthomp22: SlJR2aEx
 
 #### 3. When were the passwords changed, if at all?
 
-In order to figure out when the passwords were last changed I created a file that would parse each hash, and decipher all the required information. I figured out how to decipher the hash from this [site](https://www.tldp.org/LDP/lame/LAME/linux-admin-made-easy/shadow-file-formats.html).
+In order to figure out when the passwords were last changed and to save myself time and effort I wrote a program that would parse each hash, and decipher all the required information. I figured out how to decipher the hash from this [site](https://www.tldp.org/LDP/lame/LAME/linux-admin-made-easy/shadow-file-formats.html), and my parser can be found [here](https://github.com/yreiss1/Cryptography1/blob/master/parse.py)
 
-After running my parse.py file I recieve this output:
+After running my parse.py file I recieved this output:
 
 ```
 User: root
@@ -93,7 +93,7 @@ mthomp22: Has to change password in 99999 days
 
 #### 5. Have any passwords expired? If so, whose?
 
-According to the above information only the account of joes has been disabled, Joe's account was to be disabled 17618 days after January 1st 1970, which occured on the March 28th, 2018! I found this by converting number of days to years/days and adding to January 1st, 1970. 
+According to the above information only joe's account has been disabled, Joe's account was to be disabled 17618 days after January 1st 1970, which occured on the March 28th, 2018! I found this by converting number of days to years/days and adding to January 1st, 1970. 
 
 #### 6. Use one of the tools discussed in class (hashcat, JohnTheRipper) to try and recover each password and show how you used the tool.
 
@@ -222,4 +222,6 @@ s.close()
 The flag that is passed back after completing the two evaluations is: 
 
 ```You win! CMSC389R-{d0nt_pL@y_w1tH_mY_em0SHAns}```
+
+Don't worry I wont!
 
