@@ -7,7 +7,7 @@ First Cryptography assignment for my Intro to Ethical Hacking Course at the Univ
 
 The hashing algorithm used is ```MD5```, I discovered this by searching for any hashes that use similar formats of those found in the shadow file. I noticed that they all begin with ```$1``` followed by two more segements starting with this ```$``` character. After searching around I found the answer in the docs for pythons ```pathlib``` library, [found here](http://passlib.readthedocs.io/en/stable/lib/passlib.hash.md5_crypt.html). 
 
-![alt text]()
+![alt text](https://github.com/yreiss1/Cryptography1/blob/master/pathlib.png)
 
 #### 2. What salt is used for these passwords, if any?
 
@@ -93,7 +93,7 @@ mthomp22: Has to change password in 99999 days
 
 #### 5. Have any passwords expired? If so, whose?
 
-According to the above information the accounts of bob and joe have been disabled, bob's has been disbaled for 2000 days, while joe's has been disabled for 17618 days.
+According to the above information only the account of joes has been disabled, Joe's account was to be disabled 17618 days after January 1st 1970, which occured on the March 28th, 2018! I found this by converting number of days to years/days and adding to January 1st, 1970. 
 
 #### 6. Use one of the tools discussed in class (hashcat, JohnTheRipper) to try and recover each password and show how you used the tool.
 
