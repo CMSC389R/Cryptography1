@@ -99,8 +99,10 @@ According to the above information only joe's account has been disabled, Joe's a
 
 I decided to use John The Ripper in order to recover each password, in order to get more accustomed to how the tool work and recieved all the information I needed from this [resource](https://linuxconfig.org/password-cracking-with-john-the-ripper-on-linux).
 
-THe first step was to unshadow the passwd file using the shadow file: ```unshadow passwd shadow > unshadowed```
-The second step was to run john the ripper on unshadowed file: ```john --show unshadowed'''
+The first step was to unshadow the passwd file using the shadow file: ```unshadow passwd shadow > unshadowed```
+The second step was to run john the ripper on unshadowed file: ```john --show unshadowed```
+
+![alt text](https://github.com/yreiss1/Cryptography1/blob/master/johnTheRipper.png)
 
 This last command provided me with this output:
 ```
